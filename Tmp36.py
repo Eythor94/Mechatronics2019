@@ -1,4 +1,4 @@
-import Adafruit_BBIO.ADC as ADC
+cdimport Adafruit_BBIO.ADC as ADC
 import time
  
 sensor_pin = 'P9_40'

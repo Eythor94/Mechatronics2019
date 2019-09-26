@@ -1,13 +1,15 @@
 # Needed Imports
 import serial 
 import Adafruit_BBIO.UART as UART # Python Uart library
-from time import sleep 
-import fileinput 
-import commands # For running Terminal comands from python code
+from time import sleep
+
+UART.setup("UART1")
+ser=serial.Serial('/dev/ttyO1',9600)
+SetupTime = 0.5
 
 class GPS:
         def __init__(self):
-                #This sets up variables for useful commands.
+                ser=serial.Serial('/dev/ttyO1',9600)
                 #This set is used to set the rate the GPS reports
                 UPDATE_10_sec=  "$PMTK220,10000*2F\r\n" #Update Every 10 Seconds
                 UPDATE_5_sec=  "$PMTK220,5000*1B\r\n"   #Update Every 5 Seconds  
@@ -23,33 +25,36 @@ class GPS:
                 BAUD_9600 ="$PMTK251,9600*17\r\n"             #Set 9600 Baud Rate
                 #Commands for which NMEA Sentences are sent
                 ser.write(BAUD_57600)
-                sleep(1)
-                ser.baudrate=57600
+                sleep(SetupTime)
+                ser.baudrate = 57600
                 GPRMC_ONLY= "$PMTK314,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0*29\r\n" #Send only the GPRMC Sentence
                 GPRMC_GPGGA="$PMTK314,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0*28\r\n"#Send GPRMC AND GPGGA Sentences
                 SEND_ALL ="$PMTK314,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0*28\r\n" #Send All Sentences
                 SEND_NOTHING="$PMTK314,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0*28\r\n" #Send Nothing
                 ser.write(UPDATE_200_msec)
-                sleep(1)
+                sleep(SetupTime)
                 ser.write(MEAS_200_msec)
-                sleep(1)
+                sleep(SetupTime)
                 ser.write(GPRMC_GPGGA)
-                sleep(1)
+                sleep(SetupTime)
                 ser.flushInput()
                 ser.flushInput()
                 print "GPS Initialized"
-        
+
+# Function for reading data from GPS
         def read(self):
                 ser.flushInput()
                 ser.flushInput()
-                while ser.inWaiting()==0:
+                while ser.inWaiting()== 0:
                         pass
                 self.NMEA1=ser.readline()
-                while ser.inWaiting()==0:
+                while ser.inWaiting()== 0:
                         pass
                 self.NMEA2=ser.readline()
+                
                 NMEA1_array=self.NMEA1.split(',')
                 NMEA2_array=self.NMEA2.split(',')
+                
                 if NMEA1_array[0]=='$GPRMC':
                         self.timeUTC=NMEA1_array[1][:-8]+':'+NMEA1_array[1][-8:-6]+':'+NMEA1_array[1][-6:-4]
                         self.latDeg=NMEA1_array[3][:-7]
@@ -76,43 +81,3 @@ class GPS:
                         self.fix=NMEA2_array[6]
                         self.altitude=NMEA2_array[9]
                         self.sats=NMEA2_array[7]
-
-UART.setup("UART1") #Opens the Uart comunication bus Nr.1
-ser = serial.Serial('/dev/ttyO1',9600) # Opens the serial Conection with speed 9600
-myGPS = GPS() # Initializes the GPS class
-
-#GPSdata=open('GPS_log.kmz', 'w')
-#GPSdata.close()
-
-try:
-        commands.getstatusoutput('rm GPS_log.kml')
-except:
-        print("was not able to delete file")
-sleep(1)                
-commands.getstatusoutput('cp GPS_Template.kml GPS_log.kml')
-while(True):
-                myGPS.read()
-                print myGPS.NMEA1
-                print myGPS.NMEA2
-                if myGPS.fix!=0:
-                        print 'Universal Time: ',myGPS.timeUTC
-                        print 'You are Tracking: ',myGPS.sats,' satellites'
-                        print 'My Latitude: ',myGPS.latDeg, 'Degrees ', myGPS.latMin,' minutes ', myGPS.latHem
-                        print 'My Longitude: ',myGPS.lonDeg, 'Degrees ', myGPS.lonMin,' minutes ', myGPS.lonHem
-                        print 'My Speed: ', myGPS.knots
-                        print 'My Altitude: ',myGPS.altitude
-                        
-        		latDec=float(myGPS.latDeg)+float(myGPS.latMin)/60.
-        		lonDec=float(myGPS.lonDeg)+float(myGPS.lonMin)/60.
-        		if myGPS.lonHem=='W':
-        			lonDec=(-1)*lonDec
-        		if myGPS.latHem=='S':
-        			latDec=(-1)*latDec
-        		alt=myGPS.altitude
-                        myString=str(lonDec)+','+str(latDec)+','+alt+'\n '
-                        
-                        for line in fileinput.FileInput('GPS_log.kml',inplace=1):
-                                if "</coordinates>" in line:
-                                        line=line.replace(line,myString+line)
-                                print line,
-                sleep(3) #Sample rate
