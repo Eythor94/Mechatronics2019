@@ -10,7 +10,7 @@ while True:
     for x in range(100):
         reading = float(ADC.read(sensor_pin))
         millivolts = (reading * 1800)  # 1.8V reference = 1800 mV
-        temp_c = ((millivolts/0.274) - 500) / 10 #divide with the voltage of the voltage divider
+        temp_c = ((millivolts/0.260) - 500) / 10 #divide with the voltage of the voltage divider
         #print('mv=%d C=%d' % (millivolts, temp_c))
         avrg = avrg + temp_c
     avrgTemp = avrg/(x+1)

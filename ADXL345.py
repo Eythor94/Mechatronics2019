@@ -1,4 +1,5 @@
 # The MIT License (MIT)
+#
 # Copyright (c) 2016 Adafruit Industries
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -9,8 +10,15 @@
 #
 # The above copyright notice and this permission notice shall be included in all
 # copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
 import struct
-
 # Minimal constants carried over from Arduino library
 ADXL345_ADDRESS          = 0x53 # Var 0x53
 ADXL345_REG_DEVID        = 0x00 # Device ID
@@ -50,9 +58,6 @@ _INT_ACT                 = 0b00010000 # ACT bit
 _INT_INACT               = 0b00001000 # INACT bit
 _INT_FREE_FALL           = 0b00000100 # FREE_FALL  bit
 
-
-
-
 _STANDARD_GRAVITY = 9.80665 # earth standard gravity
 _ADXL345_MG2G_MULTIPLIER = 0.004
 
@@ -68,8 +73,6 @@ class ADXL345(object):
             i2c = I2C
         self._device = i2c.get_i2c_device(address, **kwargs)
         
-        
-        
         # Check that the acclerometer is connected, then enable it.
         if self._device.readU8(ADXL345_REG_DEVID) == 0xE5:
             self._device.write8(ADXL345_REG_POWER_CTL, 0x08)
@@ -78,7 +81,6 @@ class ADXL345(object):
         self._device.write8(_REG_INT_ENABLE, 0x0)   
         self._enabled_interrupts = {}
         self._event_status = {}
-        
         
     def set_range(self, value):
         """Set the range of the accelerometer to the provided value.  Range value
@@ -140,7 +142,7 @@ class ADXL345(object):
         return struct.unpack('<hhh', raw)
         
 # ADDED BY AGNAR
-# Fall dettect
+        
     def acceleration(self):
         """The x, y, z acceleration values returned in a 3-tuple in m / s ^ 2."""
         x, y, z = struct.unpack('<hhh',self._device.readList(ADXL345_REG_DATAX0, 6))
@@ -169,7 +171,6 @@ class ADXL345(object):
     def disable_freefall_detection(self):
         "Disable freefall detection"
         self._device.write8(_REG_INT_ENABLE, 0x0)
-        
         
     def write(self, reg, data):
         self._device.write8(reg, data)
