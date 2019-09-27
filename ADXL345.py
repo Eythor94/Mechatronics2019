@@ -20,6 +20,9 @@
 # SOFTWARE.
 import Adafruit_GPIO.I2C as I2C
 import struct
+# Library and some Help from Agnar þór Bjartmarz 
+# Modified by Eyþór Dan Sigurðsson
+
 # Minimal constants carried over from Arduino library
 ADXL345_ADDRESS          = 0x53 # Var 0x53
 ADXL345_REG_DEVID        = 0x00 # Device ID
@@ -78,7 +81,7 @@ class ADXL345(object):
         if self._device.readU8(ADXL345_REG_DEVID) == 0xE5:
             self._device.write8(ADXL345_REG_POWER_CTL, 0x08)
 #       else:
-#            raise RuntimeError('Failed to find the expected device ID register value, check your wiring.')
+#       raise RuntimeError('Failed to find the expected device ID register value, check your wiring.')
         self._device.write8(_REG_INT_ENABLE, 0x0)   
         self._enabled_interrupts = {}
         self._event_status = {}
@@ -142,7 +145,7 @@ class ADXL345(object):
         raw = self._device.readList(ADXL345_REG_DATAX0, 6)
         return struct.unpack('<hhh', raw)
         
-# ADDED BY AGNAR
+# ADDED BY AGNAR 
         
     def acceleration(self):
         """The x, y, z acceleration values returned in a 3-tuple in m / s ^ 2."""
