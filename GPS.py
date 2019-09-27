@@ -5,20 +5,13 @@ from time import sleep
 
 UART.setup("UART1")
 ser=serial.Serial('/dev/ttyO1',9600)
-SetupTime = 0.5
+SetupTime = 0.2
 
 class GPS:
         def __init__(self):
-                ser=serial.Serial('/dev/ttyO1',9600)
                 #This set is used to set the rate the GPS reports
-                UPDATE_10_sec=  "$PMTK220,10000*2F\r\n" #Update Every 10 Seconds
-                UPDATE_5_sec=  "$PMTK220,5000*1B\r\n"   #Update Every 5 Seconds  
-                UPDATE_1_sec=  "$PMTK220,1000*1F\r\n"   #Update Every One Second
                 UPDATE_200_msec=  "$PMTK220,200*2C\r\n" #Update Every 200 Milliseconds
                 #This set is used to set the rate the GPS takes measurements
-                MEAS_10_sec = "$PMTK300,10000,0,0,0,0*2C\r\n" #Measure every 10 seconds
-                MEAS_5_sec = "$PMTK300,5000,0,0,0,0*18\r\n"   #Measure every 5 seconds
-                MEAS_1_sec = "$PMTK300,1000,0,0,0,0*1C\r\n"   #Measure once a second
                 MEAS_200_msec= "$PMTK300,200,0,0,0,0*2F\r\n"  #Meaure 5 times a second
                 #Set the Baud Rate of GPS
                 BAUD_57600 = "$PMTK251,57600*2C\r\n"          #Set Baud Rate at 57600
@@ -81,3 +74,31 @@ class GPS:
                         self.fix=NMEA2_array[6]
                         self.altitude=NMEA2_array[9]
                         self.sats=NMEA2_array[7]
+                        
+                try:
+                        if myGPS.fix!=0:
+                                print 'Universal Time: ',myGPS.timeUTC
+                                print 'You are Tracking: ',myGPS.sats,' satellites'
+                                print 'My Latitude: ',myGPS.latDeg, 'Degrees ', myGPS.latMin,' minutes ', myGPS.latHem
+                                print 'My Longitude: ',myGPS.lonDeg, 'Degrees ', myGPS.lonMin,' minutes ', myGPS.lonHem
+                                print 'My Speed: ', myGPS.knots
+                                print 'My Altitude: ',myGPS.altitude
+            
+                                latDec=float(myGPS.latDeg)+float(myGPS.latMin)/60.
+                                lonDec=float(myGPS.lonDeg)+float(myGPS.lonMin)/60.
+            		
+                                if myGPS.lonHem=='W':
+                            	        lonDec=(-1)*lonDec
+                                if myGPS.latHem=='S':
+                            	        latDec=(-1)*latDec
+                                alt=myGPS.altitude
+                                myString=str(lonDec)+','+str(latDec)+','+alt+'\n '
+                                            
+                                for line in fileinput.FileInput('GPS_log.KML',inplace = 1):
+                                        if "</coordinates>" in line:
+                                                line = line.replace(line,myString+line)
+                                        print(line),
+                                return(line)
+                except:
+                        print("Lost Gps Signal!")
+                        return ""
