@@ -5,7 +5,7 @@ from time import sleep
 
 UART.setup("UART1")
 ser=serial.Serial('/dev/ttyO1',9600)
-SetupTime = 0.5
+SetupTime = 0.3
 
 class GPS:
         def __init__(self):

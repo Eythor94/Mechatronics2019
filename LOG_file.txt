@@ -1,11 +1,38 @@
 Log Mechatronics 1 2019
-Time: 2019-09-27 12:35:52 GPS:  Temp:  Accelerometer: 
-Time: 2019-09-27 12:35:52 GPS:  Temp:  Accelerometer: 
-Time: 2019-09-27 12:35:52 GPS:  Temp:  Accelerometer: 
-Time: 2019-09-27 12:35:52 GPS:  Temp:  Accelerometer: 
-Time: 2019-09-27 12:35:52 GPS:  Temp:  Accelerometer: 
-Time: 2019-09-27 12:35:52 GPS:  Temp:  Accelerometer: 
-Time: 2019-09-27 12:35:52 GPS:  Temp:  Accelerometer: 
-Time: 2019-09-27 12:35:52 GPS:  Temp:  Accelerometer: 
-Time: 2019-09-27 12:35:52 GPS:  Temp:  Accelerometer: 
-Time: 2019-09-27 12:35:52 GPS:  Temp:  Accelerometer: 
+Time: 2019-09-27 14:19:36 GPS: None Temp: 10.93 Accelerometer: X=0.3138128, Y=0.1569064, Z=12.8663248
+Time: 2019-09-27 14:19:36 GPS: None Temp: 10.99 Accelerometer: X=0.2745862, Y=0.2353596, Z=12.8663248
+Time: 2019-09-27 14:19:37 GPS: None Temp: 10.86 Accelerometer: X=0.2745862, Y=0.2353596, Z=12.9055514
+Time: 2019-09-27 14:19:37 GPS: None Temp: 10.75 Accelerometer: X=0.2353596, Y=0.2353596, Z=12.9055514
+Time: 2019-09-27 14:19:37 GPS: None Temp: 11.23 Accelerometer: X=0.2353596, Y=0.2353596, Z=12.8270982
+Time: 2019-09-27 14:19:37 GPS: None Temp: 11.44 Accelerometer: X=0.2745862, Y=0.196133, Z=12.7878716
+Time: 2019-09-27 14:19:37 GPS: None Temp: 11.45 Accelerometer: X=0.2353596, Y=0.196133, Z=12.8270982
+Time: 2019-09-27 14:19:38 GPS: None Temp: 11.49 Accelerometer: X=0.2353596, Y=0.1569064, Z=12.944778
+Time: 2019-09-27 14:19:38 GPS: None Temp: 11.47 Accelerometer: X=0.2353596, Y=0.196133, Z=12.8663248
+Time: 2019-09-27 14:19:38 GPS: None Temp: 10.72 Accelerometer: X=0.2745862, Y=0.1569064, Z=12.9055514
+Time: 2019-09-27 14:19:38 GPS: None Temp: 10.8 Accelerometer: X=0.2353596, Y=0.196133, Z=12.8663248
+Time: 2019-09-27 14:19:38 GPS: None Temp: 10.72 Accelerometer: X=0.2745862, Y=0.2353596, Z=12.8663248
+Time: 2019-09-27 14:19:39 GPS: None Temp: 10.61 Accelerometer: X=0.2353596, Y=0.2745862, Z=12.8270982
+Time: 2019-09-27 14:19:39 GPS: None Temp: 10.82 Accelerometer: X=0.2745862, Y=0.2353596, Z=12.8663248
+Time: 2019-09-27 14:19:39 GPS: None Temp: 11.27 Accelerometer: X=0.2353596, Y=0.2353596, Z=12.7878716
+Time: 2019-09-27 14:19:39 GPS: None Temp: 11.35 Accelerometer: X=0.2745862, Y=0.2353596, Z=12.8663248
+Time: 2019-09-27 14:19:39 GPS: None Temp: 11.27 Accelerometer: X=0.2745862, Y=0.2353596, Z=12.9055514
+Time: 2019-09-27 14:19:40 GPS: None Temp: 11.28 Accelerometer: X=0.2745862, Y=0.2353596, Z=12.9055514
+Time: 2019-09-27 14:19:40 GPS: None Temp: 11.3 Accelerometer: X=0.2353596, Y=0.196133, Z=12.9055514
+Time: 2019-09-27 14:19:40 GPS: None Temp: 10.75 Accelerometer: X=0.2745862, Y=0.2353596, Z=12.8270982
+Time: 2019-09-27 14:19:40 GPS: None Temp: 10.75 Accelerometer: X=0.196133, Y=0.2353596, Z=12.9055514
+Time: 2019-09-27 14:19:40 GPS: None Temp: 10.8 Accelerometer: X=0.2353596, Y=0.196133, Z=12.8270982
+Time: 2019-09-27 14:19:41 GPS: None Temp: 10.75 Accelerometer: X=0.2353596, Y=0.1569064, Z=12.8663248
+Time: 2019-09-27 14:19:41 GPS: None Temp: 10.6 Accelerometer: X=0.2353596, Y=0.196133, Z=12.9055514
+Time: 2019-09-27 14:19:41 GPS: None Temp: 11.25 Accelerometer: X=0.2745862, Y=0.196133, Z=12.8663248
+Time: 2019-09-27 14:19:41 GPS: None Temp: 11.35 Accelerometer: X=0.2745862, Y=0.196133, Z=12.8663248
+Time: 2019-09-27 14:19:41 GPS: None Temp: 11.32 Accelerometer: X=0.1569064, Y=0.2353596, Z=12.944778
+Time: 2019-09-27 14:19:42 GPS: None Temp: 11.34 Accelerometer: X=0.196133, Y=0.196133, Z=12.8270982
+Time: 2019-09-27 14:19:42 GPS: None Temp: 11.35 Accelerometer: X=0.2745862, Y=0.196133, Z=12.8270982
+Time: 2019-09-27 14:19:42 GPS: None Temp: 10.93 Accelerometer: X=0.2745862, Y=0.1569064, Z=12.8663248
+Time: 2019-09-27 14:19:42 GPS: None Temp: 10.71 Accelerometer: X=0.2745862, Y=0.1569064, Z=12.8270982
+Time: 2019-09-27 14:19:42 GPS: None Temp: 10.9 Accelerometer: X=0.2353596, Y=0.2353596, Z=12.8270982
+Time: 2019-09-27 14:19:43 GPS: None Temp: 10.92 Accelerometer: X=0.196133, Y=0.1569064, Z=12.944778
+Time: 2019-09-27 14:19:43 GPS: None Temp: 10.93 Accelerometer: X=0.2745862, Y=0.196133, Z=12.8270982
+Time: 2019-09-27 14:19:43 GPS: None Temp: 11.61 Accelerometer: X=0.2745862, Y=0.196133, Z=12.8663248
+Time: 2019-09-27 14:19:43 GPS: None Temp: 11.39 Accelerometer: X=0.1569064, Y=0.2353596, Z=12.8663248
+Time: 2019-09-27 14:19:43 GPS: None Temp: 11.57 Accelerometer: X=0.196133, Y=0.2745862, Z=12.7878716
